@@ -4,6 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OAComponent } from './oa/oa.component';
+import { FormsModule } from '@angular/forms';
+
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {MatButtonModule} from'@angular/material/button'
+import {MatTableModule} from '@angular/material/table'
+import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs'
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -12,7 +25,14 @@ import { OAComponent } from './oa/oa.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    MatTableModule,
+    AppRoutingModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatTabsModule,
+    MatCardModule,
+    FormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
