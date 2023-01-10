@@ -1,11 +1,11 @@
-<section >
+<section *ngIf="firstScreen==true">
     <form action="" class="flex-container">
         <div class="input-container">
             <label for="factors"> No of factors</label>
-            <input type="text" >
+            <input type="text" [(ngModel)]="arr.Factors">
         </div>
         <div class="button-container">
-            <button class="button"><b> Next</b></button>
+            <button class="button" (click)="onSave()"><b> Next</b></button>
             <button class="button"><b> Exit</b></button>
         </div>
     </form>
@@ -14,3 +14,65 @@
     </div>
 </section>
 
+<div *ngIf="secondScreen!=false">
+    <p>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Self aware panel </mat-panel-title>
+            <mat-panel-description>
+              Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="col-md-2" [formGroup]="addForm">
+            <div class="form-group">
+              <label class="label-control">Items</label>
+              <br />
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  class="form-control"
+                  formControlName="items"
+                />
+                <span class="slider round">
+                  <span class="on"> {{ addForm.value.items_value }} </span>
+                  <span class="off"> {{ addForm.value.items_value }} </span>
+                </span>
+              </label>
+    
+              <table>
+                <thead>
+                  <button (click)="onAddRow()">add row</button>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let row of addForm.get('rows')?.controls; let index = index"
+                  >
+                    <td>Factor Name : <input [formControl]="row.get('Factor_name')" /></td>
+                    <td>
+                      Level Values :
+                      <input [formControl]="row.get('Level_values')" />
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <section>
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" (click)="generate('custom-modal-1')">
+                Genrate
+              </button>
+            </div>
+          </section> 
+        </mat-expansion-panel>
+      </mat-accordion>
+    </p>
+    </div>
