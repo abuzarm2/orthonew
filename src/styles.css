@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #DAE3F3;
+}
+.button {
+    background-color: #B4C7E7; /* Green */
+    border: 2px solid #2F528F;
+    color: black;
+    padding: 0px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  button {border-radius: 30px;}
+  button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+input{
+   margin: auto 20px;
+   text-align: center;
+}
+.flex-container {
+    display: flex;
+}
+section{
+    margin: 80px;
+}
+.input-container{
+    margin: 20px 0px;
+}
+.button-container{
+    display: grid;
+}
+input[type="text"] {
+    width: 50px;
+    height: 30px;
+}
