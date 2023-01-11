@@ -23,61 +23,42 @@ import { Arr } from 'src/app/model';
 export class OAComponent {
   firstScreen:boolean=true;
   secondScreen:boolean=false;
-  data: Array<{}> = [];
-  id:string=''
-  SelectedItem='';
-  flag_table:boolean=false;
-  onscreen=[]
-   radio_list=[]
-  fetched_list=[];
-  displayedColumns = [];
-  rows: FormArray;
   map_col={}
-  Fac=0;
   arr: Arr = { Factors: '0', Levels: '0' };
   addForm: FormGroup;
-  panelOpenState: boolean = false;
-  flag: boolean = true;
+  displayedColumns=[]
+  rows: FormArray;
+  itemForm: FormGroup;
 
-  obj: any;
-  Gen_flag: boolean = false;
+  Factors=0
   Number_of_factor: string = '0';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.addForm = this.fb.group({
-      items: [null, Validators.required],
-      items_value: ['no', Validators.required],
-    });
+  /**Initializing row as array of form builder*/
+  constructor(private fb: FormBuilder) {
     this.rows = this.fb.array([]);
   }
+
+  /**Adding rows to form group */
   ngOnInit() {
-    this.addForm.get('items').valueChanges.subscribe((val) => {
-      if (val === true) {
-        this.addForm.get('items_value').setValue('yes');
-
-        this.addForm.addControl('rows', this.rows);
-      }
-      if (val === false) {
-        this.addForm.get('items_value').setValue('no');
-        this.addForm.removeControl('rows');
-      }
-    });
+    this.addForm.addControl('rows', this.rows);
   }
-
+  
+  /**Getting the factor value and generating columns based on Factor value*/
   onSave() {
-    this.Gen_flag = false;
-    for (let index = 0; index < Number(this.arr.Factors); index++) {
+    for (let index = 0; index < Number(this.Factors); index++) {
       this.displayedColumns.push(String(index));
     }
     this.firstScreen=false;
     this.secondScreen=true;
     console.log(this.displayedColumns);
-  }
- 
-  onAddRow() {
-    this.rows.push(this.createItemFormGroup());
+
+    for(let i=0 ; i< Number(this.Factors); i++)
+    {
+      this.rows.push(this.createItemFormGroup());
+    }
   }
 
+  /**used to create element of form array*/
   createItemFormGroup(): FormGroup {
     return this.fb.group({
       Factor_name: null,

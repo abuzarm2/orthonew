@@ -1,57 +1,39 @@
-<div class="section">
-    <form action="" class="flex-container">
-        <div class="input-container">
-            <label for="factors"> No of factors</label>
-            <input type="text" [(ngModel)]="arr.Factors">
-        </div>
-        <div class="button-container">
-            <button class="button" (click)="onSave()"><b> Next</b></button>
-            <button class="button"><b> Exit</b></button>
-        </div>
-    </form>
-    <div>
-        <p>HINT</p>
-    </div>
+<!--First Screen-->
+<div class="section1" *ngIf="firstScreen==true">
+  <form action="" class="flex-container">
+      <div class="input-container">
+          <label for="factors"> No of factors</label>
+          <input type="text" [(ngModel)]="Factors" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="button-container">
+          <button class="button" (click)="onSave()" ><b> Next</b></button>
+          <button class="button"><b> Exit</b></button>
+      </div>
+  </form>
+  <div>
+      <p>HINT</p>
+  </div>
 </div>
-<!--<div *ngIf="secondScreen==true">
-          <div class="col-md-2" [formGroup]="addForm">
-            <div class="form-group">
-              <label class="label-control">Items</label>
-              <br />
-              <label class="switch">
-                <input
-                  type="checkbox"
-                  class="form-control"
-                  formControlName="items"
-                />
-                <span class="slider round">
-                  <span class="on"> {{ addForm.value.items_value }} </span>
-                  <span class="off"> {{ addForm.value.items_value }} </span>
-                </span>
-              </label>
-    
-              <table>
-                <thead>
-                  <button (click)="onAddRow()">add row</button>
-                </thead>
-                <tbody>
-                  <tr
-                    *ngFor="let row of addForm.get('rows')?.controls; let index = index"
-                  >
-                    <td>Factor Name : <input [formControl]="row.get('Factor_name')" /></td>
-                    <td>
-                      Level Values :
-                      <input [formControl]="row.get('Level_values')" />
-                    </td>
-                    
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <section>
-            <div class="example-button-row">
-              
-            </div>
-          </section> 
-    </div>-->
+
+<!-- Second Screen-->
+<div class="section2" [formGroup]="addForm" *ngIf="secondScreen==true">
+  <div class="form-group">
+    <label class="label-control">Number of Factors : {{Factors}}</label>
+    <table class="table1">
+      <tbody>
+        <tr
+          *ngFor="let row of rows.value; let index = index"
+        >
+          <td><input [formControl]="row.get('Factor_name')" /></td>
+          <td>
+              <input [formControl]="row.get('Level_values')" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+      <button class="button">Back</button>
+      <button class="button">Next</button>
+  </div>
+</div>

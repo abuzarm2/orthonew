@@ -16,12 +16,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs'
 import {MatCardModule} from '@angular/material/card';
+import { HelpComponent } from './help/help.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    OAComponent
+    OAComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
