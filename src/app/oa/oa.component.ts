@@ -37,7 +37,7 @@ export class OAComponent {
   arr: Arr = { Factors: '0', Levels: '0' };
   addForm: FormGroup;
   panelOpenState: boolean = false;
-  flag: boolean = false;
+  flag: boolean = true;
 
   obj: any;
   Gen_flag: boolean = false;

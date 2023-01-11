@@ -26,9 +26,12 @@ input{
 .flex-container {
     display: flex;
 }
-section{
+
+.section1, .section2{
     margin: 80px;
 }
+
+
 .input-container{
     margin: 20px 0px;
 }

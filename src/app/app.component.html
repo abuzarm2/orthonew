@@ -1,2 +1,41 @@
-<app-oa></app-oa>
+<!--First Screen-->
+<div class="section1" *ngIf="firstScreen==true">
+    <form action="" class="flex-container">
+        <div class="input-container">
+            <label for="factors"> No of factors</label>
+            <input type="text" [(ngModel)]="Factors" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="button-container">
+            <button class="button" (click)="onSave()" ><b> Next</b></button>
+            <button class="button"><b> Exit</b></button>
+        </div>
+    </form>
+    <div>
+        <p>HINT</p>
+    </div>
+</div>
+
+<!-- Second Screen-->
+<div class="section2" [formGroup]="addForm" *ngIf="secondScreen==true">
+    <div class="form-group">
+      <label class="label-control">Number of Factors : {{Factors}}</label>
+      <table class="table1">
+        <tbody>
+          <tr
+            *ngFor="let row of rows.value; let index = index"
+          >
+            <td><input [formControl]="row.get('Factor_name')" /></td>
+            <td>
+                <input [formControl]="row.get('Level_values')" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+        <button class="button">Back</button>
+        <button class="button">Next</button>
+    </div>
+  </div>
+  
 <router-outlet></router-outlet>
