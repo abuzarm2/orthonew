@@ -2,7 +2,7 @@
 <div class="section1" *ngIf="firstScreen==true">
   <form action="" class="flex-container">
       <div class="input-container">
-          <label for="factors"> No of factors</label>
+          <label for="factors" style="margin-right: 10px;"> No of factors</label>
           <input type="text" [(ngModel)]="Factors" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="button-container">
@@ -11,29 +11,47 @@
       </div>
   </form>
   <div>
-      <p>HINT</p>
+      <p style="font-size: small; margin-top: 10px;">Limitation: Maximum factor range is 9999</p>
   </div>
 </div>
 
 <!-- Second Screen-->
-<div class="section2" [formGroup]="addForm" *ngIf="secondScreen==true">
-  <div class="form-group">
-    <label class="label-control">Number of Factors : {{Factors}}</label>
+<div class="section2"  *ngIf="secondScreen==true">
+  <label class="label-control">Number of Factors : {{Factors}}</label>
+  <button class="btn"  (click)="emptylist()"><i class="bi bi-trash"></i></button>
+  <div class="flex-container">
+  <div class="form-group" class="input-container">
+    
     <table class="table1">
       <tbody>
+        <tr class="titles"><th>Factor name</th><th>No. of Levels</th></tr>
         <tr
-          *ngFor="let row of rows.value; let index = index"
+          *ngFor="let row of rows; let index = index"
         >
-          <td><input [formControl]="row.get('Factor_name')" /></td>
+          <td><input class="inputId" [(ngModel)]="row.Factor_name" #name="ngModel"/></td>
           <td>
-              <input [formControl]="row.get('Level_values')" />
+              <input class="inputId" style="width: 50px;" [(ngModel)]="row.Level_count" #name="ngModel"/>
           </td>
+          
         </tr>
       </tbody>
     </table>
+      <div class="buttons_container" style="margin-top: 10px;">
+        <button class="button button2" (click)="backfunction()">Back</button>
+        <button *ngIf="flagoa == true" class="button button2" (click)="CreateOA()">Create OA</button>
+        <button *ngIf="flagnext == true" class="button button2"(click)="display()">Next</button>
+        <button class="button button2">Exit</button>
+      </div>
   </div>
-  <div>
-      <button class="button">Back</button>
-      <button class="button">Next</button>
+
+  <div *ngIf="flagoa == true" class="input-container" style="margin-left: 10px;">
+    <p><b>Factors value</b></p>
+    <div *ngFor="let v of rows" style="display: flex;">
+      
+        <input class="inputlevels" *ngFor="let i of v.Level_value" type="text" [(ngModel)]="i.value" #name="ngModel" class="space"/>
+     
+    </div>
+  </div>
   </div>
 </div>
+
